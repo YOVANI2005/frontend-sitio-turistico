@@ -1,0 +1,69 @@
+.hero {
+  background-image: url('https://source.unsplash.com/1600x500/?colombia,nature');
+  background-size: cover;
+  background-position: center;
+  padding: 5rem 1rem;
+  color: white;
+  text-align: center;
+}
+
+.hero-text {
+  background: rgba(0,0,0,0.5);
+  display: inline-block;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.hero-text button,
+.contacto button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.about, .contacto, .tours {
+  padding: 3rem 1rem;
+  text-align: center;
+  background-color: #f7f9fb;
+}
+
+.about img {
+  margin-top: 1rem;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tour-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 1rem;
+}
+
+.tour-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}

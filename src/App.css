@@ -1,38 +1,124 @@
-.App {
-  text-align: center;
+/* ---------- ESTILO GLOBAL ---------- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3 {
+  color: #2c3e50;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* ---------- FORMULARIOS ---------- */
+.form-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #3498db;
   color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #2980b9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.error {
+  color: red;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ---------- TARJETAS (Tours) ---------- */
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tour-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  text-align: left;
+  padding: 1rem;
+}
+
+.tour-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* ---------- TABLAS (Admin) ---------- */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.admin-table th, .admin-table td {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #f0f0f0;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .tour-grid {
+    grid-template-columns: 1fr;
   }
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1rem;
 }
