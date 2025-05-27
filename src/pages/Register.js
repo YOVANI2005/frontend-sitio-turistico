@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { api } from '../services/api';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const [form, setForm] = useState({
-    nombre: '',
-    email: '',
-    password: '',
-    rol: 'publico'  // Fijamos el rol sin permitir cambiarlo
-  });
+  const [form, setForm] = useState({ nombre: '', email: '', password: '' });
   const [error, setError] = useState('');
+  const [exito, setExito] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -18,43 +14,37 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setExito('');
+
     try {
-      await api.post('/auth/register', form);
-      navigate('/login');
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, form);
+      setExito('✅ Registro exitoso. Redirigiendo...');
+      
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000); // redirige después de 2 segundos
     } catch (err) {
-      setError('Error al registrar usuario');
+      console.error(err);
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('Error al registrar. Intenta nuevamente.');
+      }
     }
   };
 
   return (
-    <div className="form-container">
+    <div className="container">
       <h2>Registrarse</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="nombre"
-          placeholder="Nombre completo"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Correo electrónico"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          onChange={handleChange}
-          required
-        />
-        {/* Campo oculto para enviar el rol como 'publico' */}
-        <input type="hidden" name="rol" value="publico" />
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {exito && <p style={{ color: 'green' }}>{exito}</p>}
+
+      <form onSubmit={handleSubmit} className="form-container">
+        <input type="text" name="nombre" placeholder="Nombre" value={form.nombre} onChange={handleChange} required />
+        <input type="email" name="email" placeholder="Correo electrónico" value={form.email} onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Contraseña" value={form.password} onChange={handleChange} required />
         <button type="submit">Registrarse</button>
-        {error && <p className="error">{error}</p>}
       </form>
     </div>
   );
